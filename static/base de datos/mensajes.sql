@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-12-2023 a las 04:14:05
+-- Tiempo de generación: 02-01-2024 a las 05:27:08
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,44 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `contactos`
+-- Estructura de tabla para la tabla `mensajes`
 --
 
-CREATE TABLE `contactos` (
-  `contacto_id` int(11) NOT NULL,
-  `contacto` varchar(255) DEFAULT NULL,
-  `nombre` varchar(255) DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
-  `id_usuario` int(11) NOT NULL
+CREATE TABLE `mensajes` (
+  `mensajes_id` int(11) NOT NULL,
+  `id_conversacion` int(11) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `mensaje` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `contactos`
+-- Volcado de datos para la tabla `mensajes`
 --
 
-INSERT INTO `contactos` (`contacto_id`, `contacto`, `nombre`, `imagen`, `id_usuario`) VALUES
-(7, 'magipoter777@gmail.com', 'Pedro Pistolas', '2023205827_cuboblack.jpeg', 6),
-(8, 'magipoter@magipoter.com', 'Pablo Machetes', '2023205851_bad.jpeg', 6);
+INSERT INTO `mensajes` (`mensajes_id`, `id_conversacion`, `id_usuario`, `mensaje`) VALUES
+(1, 1, 6, 'Hola'),
+(2, 1, 7, 'Holi crayoli');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `contactos`
+-- Indices de la tabla `mensajes`
 --
-ALTER TABLE `contactos`
-  ADD PRIMARY KEY (`contacto_id`);
+ALTER TABLE `mensajes`
+  ADD PRIMARY KEY (`mensajes_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `contactos`
+-- AUTO_INCREMENT de la tabla `mensajes`
 --
-ALTER TABLE `contactos`
-  MODIFY `contacto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `mensajes`
+  MODIFY `mensajes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

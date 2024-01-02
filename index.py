@@ -284,30 +284,48 @@ def chats():
     contactos_usuario = cursor.fetchall()
     conexion.commit()
     
-    contactos = []
-    for contacto in contactos_usuario:
-        for chat in conversaciones:
-            if session['id'] in chat:
-                contactos.append(contacto)
+    contactos = [contacto for contacto in contactos_usuario if any(session['id'] in chat for chat in conversaciones)]
+    #Explicación de la lista
+    #1--itera sobre cada elemento en la lista contactos_usuario-En cada iteración, el elemento actual se denomina contacto.
 
-    #Empieza Parte de Mensajes
-    conexion = mysql.connect()
-    cursor = conexion.cursor() 
-    cursor.execute("SELECT * FROM conversacion WHERE id_usuario = %s", (session['id'])) 
-    conversaciones = cursor.fetchall()
-    cursor.execute("SELECT * FROM `contactos` WHERE `id_usuario` = %s", (session['id'])) 
-    contactos_usuario = cursor.fetchall()
-    conexion.commit()
+    #2--Any --condicional que filtra los elementos de contactos_usuario-any devuelve True si al menos uno de los elementos en el iterable es True \n En este caso, el iterable es la expresión generadora (session['id'] in chat for chat in conversaciones).
+    #session['id'] in chat for chat in conversaciones--itera sobre cada elemento en conversaciones \nEn cada iteración, verifica si session['id'] está presente en chat. La expresión generadora devuelve un iterador de valores booleanos, indicando si session['id'] está en cada chat.
+    #any(...): La función any toma el iterable de valores booleanos y devuelve True si al menos uno de ellos es True. Si session['id'] está en al menos una conversación, el condicional es verdadero y el contacto se incluirá en la lista final de contactos.
+
+    #3-- contactos será una lista variable resultante de los contactos
+
+    #Zona de recepción de mensajes
+    listR = []
+    listL = []
+
+    for contacto in contactos:
+        conexion = mysql.connect()
+        cursor25 = conexion.cursor() 
+        cursor25.execute("SELECT * FROM mensajes WHERE id_usuario = %s or id_usuario = %s", (contactos[0][0], session['id']))
+        mensajes = cursor25.fetchall()
+        conexion.commit()
+
+        for mensaje in mensajes:
+            if session['id'] in mensaje:
+                listR.append({'text': mensaje[3], 'id': mensaje[2]})
+            elif contactos[0][0] in mensaje:
+                listL.append({'text': mensaje[3], 'id': mensaje[2]})
+
     
-    
-    response = make_response(render_template('paginas/chats.html',chats = conversaciones, contactos = contactos))
+    response = make_response(render_template('paginas/chats.html',chats = conversaciones, contactos = contactos, listR = listR, listL = listL))
     response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     return response
 
 #Para los mensajes del chat
 @app.route('/chats/mensajes', methods = ['POST'])
 def mensajes():
+    idconv = request.form['id-conv']
+    mensaje = request.form['mensaje']
 
+    conexion = mysql.connect()
+    cursor = conexion.cursor() 
+    cursor.execute("INSERT INTO `mensajes` (`mensajes_id`, `id_conversacion`, `id_usuario`, `mensaje`) VALUES (NULL, %s, %s, %s)", (idconv, session['id'], mensaje)) 
+    conexion.commit()
 
     return redirect('/chats')
 

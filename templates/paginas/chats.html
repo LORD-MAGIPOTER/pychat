@@ -94,19 +94,39 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
                 <!-- Aquí irán los mensajes -->
-                <p>asdada</p><br>
                 
+                {% for message in listR %}
+                <div class="d-flex justify-content-start mb-2">
+                    <div class="bg-secondary text-light rounded p-2 ms-auto">
+                        {{ message.text }} <!--Del elemento message se obtiene la propiedad text, que es la que lleva el mensaje-->
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- Mensajes de la lista L  -->
+                {% for message in listL %}
+                <div class="d-flex justify-content-end mb-2">
+                    <div class="bg-primary text-light rounded p-2 me-auto">
+                        {{ message.text }}
+                    </div>
+                </div>
+                {% endfor %}
+
             </div>
 
             <div class="modal-footer">
                 <!-- Aquí se envían los mensajes -->
                 <form action="/chats/mensajes" method="post">
-                        <input type="text" name="mensaje" id="mensaje" aria-describedby="helpId" class="rounded-3"
-                            placeholder="Escribir ..." />
+                    <input type="hidden" name="id-conv" id="id-conv" aria-describedby="helpId" class="rounded-3"
+                        value="{{ chat[0] }}" />
+
+                    <input type="text" name="mensaje" id="mensaje" aria-describedby="helpId" class="rounded-3"
+                        placeholder="Escribir ..." />
 
                     <button type="submit" class="btn btn-outline-info">
-                        Enviar 
+                        Enviar
                     </button>
                 </form>
             </div>

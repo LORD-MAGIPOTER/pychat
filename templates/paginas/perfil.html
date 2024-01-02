@@ -108,7 +108,7 @@
             <div class="mb-3 d-flex justify-content-start">
                 <form action="/perfil/borrar/contacto" method="post" class="me-2">
                     <input type="hidden" class="form-control" name="contacto-borrar" id="contacto-borrar"
-                        aria-describedby="helpId" value="{{ contacto_id }}" />
+                        aria-describedby="helpId" value="{{ contacto[0] }}" />
 
                     <button type="submit" class="btn btn-outline-warning">
                         Eliminar
@@ -117,7 +117,7 @@
 
                 <form action="/perfil/mensaje/contacto" method="post">
                     <input type="hidden" class="form-control" name="contacto-mensaje" id="contacto-mensaje"
-                        aria-describedby="helpId" value="{{ contacto_id }}" />
+                        aria-describedby="helpId" value="{{ contacto[0] }}" />
 
                     <!-- <a type="submit" name="" id="" class="btn btn-outline-info" href="/chats/{{ conversacion }}" role="button">Enviar Mensaje</a> -->
 
