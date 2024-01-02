@@ -6,6 +6,7 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash #Para hashear y comprobar las contraseñas
 import os
 
+#COMENTARIO DE PRUEBA
 app = Flask(__name__)
 
 app.secret_key = "chatpy"
