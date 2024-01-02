@@ -1,0 +1,235 @@
+.mensaje{
+    color: red;
+    font-weight: bold;
+}
+
+/*Recordar que los estilos deben estar fuera de la carpeta templates*/
+body { 
+    color: white;
+    background: #c31432;
+    /* usar uigradient para buscar degradados de colores  */
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #240b36, #c31432);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #240b36, #c31432);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.file-input {
+    position: relative;
+}
+
+.file-input label {
+    display: inline-block;
+    background-color: #C8A2C8;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.file-input input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.email {
+    width: 48%;
+    text-align: right;
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-row > div {
+    flex-basis: 48%; /* Ajusta el ancho de cada input */
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+h1 {
+    position: absolute;
+    top: 0;
+    
+}
+
+input {
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    border-radius: 6px;
+}
+
+.wrapper {
+    position: relative;
+    width: 800px;
+    height: 540px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.wrapper .form-box .register{
+    display: none;
+}
+
+
+.form-box h2 {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+    font-size: 2em;
+    color: #162938;
+    border-top: 2px solid #162938;/*Borde(línea) que se ve */
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    bottom: 0;
+    background: #C8A2C8;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+}
+
+.btn-black {
+    width: 100%;
+    height: 45px;
+    background: #000000;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+}
+
+
+.btn__continuar{
+    width: 48%;
+    height: 45px;
+    bottom: 0;
+    background: #C8A2C8;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+}
+
+.btn__sesion{
+    width: 100%;
+    height: 45px;
+    bottom: 0;
+    margin-bottom: 8px;
+    background: #C8A2C8;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+}
+
+.btn__omitir a{
+    color: white;
+    text-decoration: none;
+}
+
+/* body.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid white;/*linea debajo de cada espacio*/
+    margin: 30px 0;
+}
+
+.input-box label{ 
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label{
+    top: -5px;
+}
+.input-box input:valid~label{
+    top: -5px;
+    
+}
+
+.input-box input{ /*cajas de los inputs*/
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;/*quita el borde de los inputs*/
+    outline: none;/*quita la interfaz de los inputs*/
+    font-size: 1em;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: white;
+    line-height: 57px;/*alinea los iconos con las lineas*/
+}
+
+

@@ -1,0 +1,135 @@
+{% extends 'paginas/layout.html' %}
+<!-- Contenido del Perfil -->
+{% block content %}
+<br>
+<div class="container border rounded-4">
+    <div class="row">
+        <!-- Elemento 1: Imagen -->
+        <div class="col-md-3">
+            <div class="imagen_usuario">
+                <img src=" /img/{{ imagen }} " width="120px" class="img-fluid rounded-circle imagen-personalizada"
+                    alt="Imagen de usuario" />
+            </div>
+        </div>
+
+        <!-- Elemento 2: Nombre -->
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h2">NOMBRE</strong>
+            </div>
+            <br>
+            <div>
+                <strong class="h3">{{ nombre }}</strong>
+            </div>
+        </div>
+
+        <!-- Elemento 3: Correo -->
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h2">CORREO</strong>
+            </div>
+            <br>
+            <div>
+                <strong class="h4">{{ correo }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h2">BORRAR CUENTA</strong>
+            </div>
+            <br>
+            <div class="mb-3">
+                <form action="/perfil/borrar" method="post">
+                    <input type="hidden" class="form-control" name="perfil-borrar" id="perfil-borrar"
+                        aria-describedby="helpId" value="{{ id }}" />
+
+                    <div align="center">
+                        <button type="submit" class="btn btn-outline-warning">
+                            Borrar
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="container border rounded-4">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class=" text-warning">CONTACTOS</h1>
+        </div>
+    </div>
+</div>
+<br>
+{% for contacto in contactos %}
+<div class="container border rounded-4">
+    <br>
+    <br>
+    <!-- Agregar un for para mostrar la lista de contactos -->
+    <div class="row">
+        <!-- Elemento 1: Imagen -->
+        <div class="col-md-3">
+            <div class="imagen_usuario">
+                <img src=" /img/{{ contacto[3] }} " width="120px" class="img-fluid rounded-circle imagen-personalizada"
+                    alt="Imagen de usuario" />
+            </div>
+        </div>
+
+        <!-- Elemento 2: Nombre -->
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h3">NOMBRE</strong>
+            </div>
+            <br>
+            <div>
+                <strong class="h4">{{ contacto[2] }}</strong>
+            </div>
+        </div>
+
+        <!-- Elemento 3: Correo -->
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h3">CORREO</strong>
+            </div>
+            <br>
+            <div>
+                <strong class="h4">{{ contacto[1] }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h3">OPCIONES </strong>
+            </div>
+            <br>
+            <div class="mb-3 d-flex justify-content-start">
+                <form action="/perfil/borrar/contacto" method="post" class="me-2">
+                    <input type="hidden" class="form-control" name="contacto-borrar" id="contacto-borrar"
+                        aria-describedby="helpId" value="{{ contacto_id }}" />
+
+                    <button type="submit" class="btn btn-outline-warning">
+                        Eliminar
+                    </button>
+                </form>
+
+                <form action="/perfil/mensaje/contacto" method="post">
+                    <input type="hidden" class="form-control" name="contacto-mensaje" id="contacto-mensaje"
+                        aria-describedby="helpId" value="{{ contacto_id }}" />
+
+                    <!-- <a type="submit" name="" id="" class="btn btn-outline-info" href="/chats/{{ conversacion }}" role="button">Enviar Mensaje</a> -->
+
+                    <button type="submit" class="btn btn-outline-info">
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

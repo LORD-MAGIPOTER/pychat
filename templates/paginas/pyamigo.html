@@ -1,0 +1,150 @@
+{% include 'paginas/layout.html' %}
+
+{% block content %}
+<br><br>
+<div class="container">
+    <nav class="navbar navbar-dark border rounded-4">
+        <div class="container-fluid">
+            <a class="navbar-brand">Buscar PyUser Por Correo</a>
+            <form class="d-flex" action="/pyamigo/buscar" method="post">
+                <input class="form-control me-2" type="email" placeholder="Ingresar Correo" aria-label="Search"
+                    name="buscar-pyamigo" id="buscar-pyamigo">
+                <button class="btn btn-outline-info" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<br>
+{% for contacto in contactos %}
+
+<div class="container border rounded-4 ">
+    <div class="row">
+        <!-- Elemento 1: Imagen -->
+        <div class="col-md-3">
+            <div class="imagen_usuario">
+                <img src=" /img/{{ contacto[4] }} " width="120px" class="img-fluid rounded-circle imagen-personalizada"
+                    alt="Imagen de usuario" />
+            </div>
+        </div>
+
+        <!-- Elemento 2: Nombre -->
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h3">NOMBRE</strong>
+            </div>
+            <br>
+            <div>
+                <strong class="h4">{{ contacto[1] }}</strong>
+            </div>
+        </div>
+
+        <!-- Elemento 3: Correo -->
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h3">CORREO</strong>
+            </div>
+            <br>
+            <div>
+                <strong class="h4">{{ contacto[2] }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h3">&nbsp;&nbsp;AGREGAR </strong>
+            </div>
+            <br>
+            <div class="mb-3">
+                <div align="center">
+                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                        href="#exampleModalToggle{{ contacto[0] }}">
+                        Agregar
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+<!-- Primer Modal -->
+<div class="modal fade" id="exampleModalToggle{{ contacto[0] }}" aria-hidden="true"
+    aria-labelledby="exampleModalToggleLabel{{ contacto[0] }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel{{ contacto[0] }}">¿Desea Agregar Este PyAmigo?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-3">
+                    <div class="imagen_usuario">
+                        <img src="/img/{{ contacto[4] }}" width="120px"
+                            class="img-fluid rounded-circle imagen-personalizada" alt="Imagen de usuario" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="ms-2 me-2">
+                        <strong class="h3">NOMBRE</strong>
+                    </div>
+                    <br>
+                    <div>
+                        <strong class="h4">{{ contacto[1] }}</strong>
+                    </div>
+                </div>
+                <br>
+                <div class="col-md-3">
+                    <div class="ms-2 me-2">
+                        <strong class="h3">CORREO</strong>
+                    </div>
+                    <br>
+                    <div>
+                        <strong class="h4">{{ contacto[2] }}</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <!-- BOTON QUE VA A ENVIAR LOS DATOS A LA BASE DE DATOS -->
+                <form action="/pyamigo/agregar" method="post">
+                    <input type="hidden" class="form-control" name="contacto-agregar" id="contacto-agregar"
+                        aria-describedby="helpId" value="{{ contacto[0] }}" />
+
+                    <input type="hidden" class="form-control" name="contacto-correo" id="contacto-correo"
+                        aria-describedby="helpId" value="{{ contacto[2] }}" />
+
+                    <input type="hidden" class="form-control" name="contacto-nombre" id="contacto-nombre"
+                        aria-describedby="helpId" value="{{ contacto[1] }}" />
+
+                    <input type="hidden" class="form-control" name="contacto-imagen" id="contacto-imagen"
+                        aria-describedby="helpId" value="{{ contacto[4] }}" />
+
+                    <button type="submit" class="btn btn-outline-info" data-bs-target="#exampleModalToggle2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Segundo Modal -->
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title h3" id="exampleModalToggleLabel2">PyAmigo Agregado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body h4">
+                Haz Agregado un Nuevo PyAmigo
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="shortcut icon" href="https://m.media-amazon.com/images/I/61O5ETU1alL._AC_UF894,1000_QL80_.jpg"
+        type="image/x-icon">
+
+    <link rel="stylesheet" href="../../static/estilos.css" type="text/css">
+    <link rel="shortcut icon" href="../../static/IconPychat.jfif" type="image/x-icon">
+
+
+</head>
+
+<body>
+
+    <main>
+        <div class="wrapper">
+            <h1 id="lg__titulo">INICIAR SESIÓN</h1>
+
+            <form action="/login" method="post">
+                <div class="input-row">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                        <input type="email" name="login-correo" id="login-correo">
+                        <label for=""> Correo</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <input type="password" name="login-password" id="login-password">
+                        <label for=""> Contraseña</label>
+                    </div>
+                </div>
+                <div align="center" class="mensaje">
+                    {{ mensaje }}
+                </div>
+                <button type="submit" class="btn" id="">Continuar</button>
+                <a href="/"><button type="button" class="btn btn-black" id="">Volver</button></a>
+            </form>
+        </div>
+
+    </main>
+
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>

@@ -1,0 +1,125 @@
+{% include 'paginas/layout.html' %}
+
+{% block content %}
+<br><br>
+{% if chats == '' %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 ">
+            <div class="h-100 p-5 border rounded-3">
+                <h2>Aún no tienes un chat activo</h2>
+                <p>
+                    Para crear un nuevo chat dirigete a tu perfil y pulsa el boton que dice enviar mensaje, en el
+                    contacto
+                    que gustes.
+                </p>
+                <a class="btn btn-outline-info" href="/perfil" role="button">Comenzar a Chatear!</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+{% for chat in chats %}
+{% for contact in contactos %}
+{% if contact[0] in chat %}
+<div class="container border rounded-4">
+    <div class="row">
+        <!-- Elemento 1: Imagen -->
+        <div class="col-md-3">
+            <div class="imagen_usuario">
+                <img src=" /img/{{ contact[3] }} " width="120px" class="img-fluid rounded-circle imagen-personalizada"
+                    alt="Imagen de usuario" />
+            </div>
+        </div>
+
+        <!-- Elemento 2: Nombre -->
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h2">NOMBRE</strong>
+            </div>
+            <br>
+            <div>
+                <strong class="h3">{{ contact[2] }}</strong>
+            </div>
+        </div>
+
+        <!-- Elemento 3: Correo -->
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h2">CORREO</strong>
+            </div>
+            <br>
+            <div>
+                <strong class="h4">{{ contact[1] }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="ms-2 me-2">
+                <strong class="h2">BORRAR CUENTA</strong>
+            </div>
+            <br>
+            <div class="mb-3">
+                <form action="/chats/Entrar" method="post">
+                    <input type="hidden" class="form-control" name="perfil-borrar" id="perfil-borrar"
+                        aria-describedby="helpId" value="{{ id }}" />
+
+                    <div align="center">
+                        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                            data-bs-target="#exampleModalToggle{{ contact[0] }}">
+                            Entrar
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+<div class="modal fade" id="exampleModalToggle{{ contact[0] }}" aria-hidden="true"
+    aria-labelledby="exampleModalToggleLabel{{ contact[0] }}" tabindex="-1" data-bs-backdrop="static"
+    data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel{{ contact[0] }}">
+                    <img src="/img/{{ contact[3] }}" width="40px" class="img-fluid rounded-circle imagen-personalizada"
+                        alt="Imagen de usuario" />
+                    <strong class="h4">{{ contact[2] }}</strong>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí irán los mensajes -->
+                <p>asdada</p><br>
+                
+            </div>
+
+            <div class="modal-footer">
+                <!-- Aquí se envían los mensajes -->
+                <form action="/chats/mensajes" method="post">
+                        <input type="text" name="mensaje" id="mensaje" aria-describedby="helpId" class="rounded-3"
+                            placeholder="Escribir ..." />
+
+                    <button type="submit" class="btn btn-outline-info">
+                        Enviar 
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endif %}
+{% endfor %}
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
