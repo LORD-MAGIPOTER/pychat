@@ -305,13 +305,15 @@ def chats():
         mensajes = cursor25.fetchall()
         conexion.commit()
 
-        for mensaje in mensajes:
-            if session['id'] in mensaje:
+        for mensaje in mensajes:#Aquí está entrando doble vez el mensaje, no sé por qué
+            if mensaje[2] == session['id']:
                 listR.append({'text': mensaje[3], 'session_id': mensaje[2]})
-            elif contactos[0][0] in mensaje:
+
+            elif mensaje[2] == contactos[0][1]:
                 listL.append({'text': mensaje[3], 'contact_id': mensaje[2]})
 
     print("listL:", listL)
+    print("listR:", listR)
     
     response = make_response(render_template('paginas/chats.html',chats = conversaciones, contactos = contactos, listR = listR, listL = listL))
     response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
