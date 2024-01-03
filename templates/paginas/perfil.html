@@ -74,7 +74,7 @@
         <!-- Elemento 1: Imagen -->
         <div class="col-md-3">
             <div class="imagen_usuario">
-                <img src=" /img/{{ contacto[3] }} " width="120px" class="img-fluid rounded-circle imagen-personalizada"
+                <img src=" /img/{{ contacto[4] }} " width="120px" class="img-fluid rounded-circle imagen-personalizada"
                     alt="Imagen de usuario" />
             </div>
         </div>
@@ -86,7 +86,7 @@
             </div>
             <br>
             <div>
-                <strong class="h4">{{ contacto[2] }}</strong>
+                <strong class="h4">{{ contacto[3] }}</strong>
             </div>
         </div>
 
@@ -97,7 +97,7 @@
             </div>
             <br>
             <div>
-                <strong class="h4">{{ contacto[1] }}</strong>
+                <strong class="h4">{{ contacto[2] }}</strong>
             </div>
         </div>
         <div class="col-md-3">
@@ -108,7 +108,7 @@
             <div class="mb-3 d-flex justify-content-start">
                 <form action="/perfil/borrar/contacto" method="post" class="me-2">
                     <input type="hidden" class="form-control" name="contacto-borrar" id="contacto-borrar"
-                        aria-describedby="helpId" value="{{ contacto[0] }}" />
+                        aria-describedby="helpId" value="{{ contacto[1] }}" />
 
                     <button type="submit" class="btn btn-outline-warning">
                         Eliminar
@@ -117,7 +117,7 @@
 
                 <form action="/perfil/mensaje/contacto" method="post">
                     <input type="hidden" class="form-control" name="contacto-mensaje" id="contacto-mensaje"
-                        aria-describedby="helpId" value="{{ contacto[0] }}" />
+                        aria-describedby="helpId" value="{{ contacto[1] }}" />
 
                     <!-- <a type="submit" name="" id="" class="btn btn-outline-info" href="/chats/{{ conversacion }}" role="button">Enviar Mensaje</a> -->
 

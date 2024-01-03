@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-01-2024 a las 03:47:00
+-- Tiempo de generación: 03-01-2024 a las 04:45:04
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `contactos` (
+  `isbn_contactos` int(11) NOT NULL,
   `contacto_id` int(11) NOT NULL,
   `contacto` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
@@ -39,11 +40,11 @@ CREATE TABLE `contactos` (
 -- Volcado de datos para la tabla `contactos`
 --
 
-INSERT INTO `contactos` (`contacto_id`, `contacto`, `nombre`, `imagen`, `id_usuario`) VALUES
-(6, 'magipoter@gmail.com', 'David', '2023205812_cubo.png', 7),
-(7, 'magipoter777@gmail.com', 'Pedro Pistolas', '2023205827_cuboblack.jpeg', 6),
-(8, 'magipoter@magipoter.com', 'Pablo Machetes', '2023205851_bad.jpeg', 6),
-(8, 'magipoter@magipoter.com', 'Pablo Machetes', '2023205851_bad.jpeg', 7);
+INSERT INTO `contactos` (`isbn_contactos`, `contacto_id`, `contacto`, `nombre`, `imagen`, `id_usuario`) VALUES
+(1, 6, 'magipoter@gmail.com', 'David', '2023205812_cubo.png', 7),
+(2, 7, 'magipoter777@gmail.com', 'Pedro Pistolas', '2023205827_cuboblack.jpeg', 6),
+(3, 8, 'magipoter@magipoter.com', 'Pablo Machetes', '2023205851_bad.jpeg', 6),
+(4, 8, 'magipoter@magipoter.com', 'Pablo Machetes', '2023205851_bad.jpeg', 7);
 
 -- --------------------------------------------------------
 
@@ -64,8 +65,7 @@ CREATE TABLE `conversacion` (
 INSERT INTO `conversacion` (`conversacion_id`, `id_usuario`, `id_contacto`) VALUES
 (1, 6, 7),
 (3, 6, 8),
-(4, 7, 6),
-(5, 7, 9);
+(4, 7, 6);
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,8 @@ CREATE TABLE `mensajes` (
 
 INSERT INTO `mensajes` (`mensajes_id`, `id_conversacion`, `id_usuario`, `mensaje`) VALUES
 (1, 1, 6, 'Hola'),
-(2, 1, 7, 'Holi crayoli');
+(2, 1, 7, 'Holi crayoli'),
+(4, 1, 6, 'Holo');
 
 -- --------------------------------------------------------
 
@@ -118,6 +119,12 @@ INSERT INTO `usuarios` (`usuario_id`, `nombre`, `correo`, `password`, `imagen`, 
 --
 
 --
+-- Indices de la tabla `contactos`
+--
+ALTER TABLE `contactos`
+  ADD PRIMARY KEY (`isbn_contactos`);
+
+--
 -- Indices de la tabla `conversacion`
 --
 ALTER TABLE `conversacion`
@@ -140,16 +147,22 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `contactos`
+--
+ALTER TABLE `contactos`
+  MODIFY `isbn_contactos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `conversacion`
 --
 ALTER TABLE `conversacion`
-  MODIFY `conversacion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `conversacion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `mensajes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `mensajes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

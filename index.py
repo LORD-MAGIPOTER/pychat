@@ -245,7 +245,7 @@ def agregar_pyamigo():
 
     conexion = mysql.connect()
     cursor = conexion.cursor() 
-    cursor.execute("INSERT INTO `contactos` (`contacto_id`, `contacto`, `nombre`, `imagen`, `id_usuario`) VALUES (%s,%s,%s,%s,%s)",(contacto_id, contacto,nombre,imagen,session['id'])) 
+    cursor.execute("INSERT INTO `contactos` (`isbn_contactos`,`contacto_id`, `contacto`, `nombre`, `imagen`, `id_usuario`) VALUES (NULL,%s,%s,%s,%s,%s)",(contacto_id, contacto,nombre,imagen,session['id'])) 
     conexion.commit()
 
     return redirect('/pyamigo')
@@ -365,6 +365,7 @@ def borrar_contacto():
     conexion = mysql.connect()
     cursor = conexion.cursor()
     cursor.execute("DELETE FROM `contactos` WHERE contacto_id = %s AND id_usuario = %s",(id_borrar,session['id'])) 
+    cursor.execute("DELETE FROM `conversacion` WHERE id_contacto = %s AND id_usuario = %s",(id_borrar,session['id'])) 
     conexion.commit()
 
     response = make_response(redirect('/perfil'))
