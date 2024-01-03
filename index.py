@@ -307,9 +307,9 @@ def chats():
 
         for mensaje in mensajes:
             if session['id'] in mensaje:
-                listR.append({'text': mensaje[3], 'id': mensaje[2]})
+                listR.append({'text': mensaje[3], 'session_id': mensaje[2]})
             elif contactos[0][0] in mensaje:
-                listL.append({'text': mensaje[3], 'id': mensaje[2]})
+                listL.append({'text': mensaje[3], 'contact_id': mensaje[2]})
 
     
     response = make_response(render_template('paginas/chats.html',chats = conversaciones, contactos = contactos, listR = listR, listL = listL))

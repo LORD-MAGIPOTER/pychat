@@ -98,20 +98,24 @@
                 <!-- Aquí irán los mensajes -->
                 
                 {% for message in listR %}
+                {% if message.session_id == session['id'] %}
                 <div class="d-flex justify-content-start mb-2">
                     <div class="bg-secondary text-light rounded p-2 ms-auto">
                         {{ message.text }} <!--Del elemento message se obtiene la propiedad text, que es la que lleva el mensaje-->
                     </div>
                 </div>
+                {% endif %}
                 {% endfor %}
 
                 <!-- Mensajes de la lista L  -->
                 {% for message in listL %}
+                {% if message.contact_id == contact[0] %}
                 <div class="d-flex justify-content-end mb-2">
-                    <div class="bg-primary text-light rounded p-2 me-auto">
+                    <div class="bg-black text-light rounded p-2 me-auto">
                         {{ message.text }}
                     </div>
                 </div>
+                {% endif %}
                 {% endfor %}
 
             </div>
