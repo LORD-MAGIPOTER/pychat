@@ -301,7 +301,7 @@ def chats():
     for contacto in contactos:
         conexion = mysql.connect()
         cursor25 = conexion.cursor() 
-        cursor25.execute("SELECT * FROM mensajes WHERE id_usuario = %s or id_usuario = %s", (contactos[0][0], session['id']))
+        cursor25.execute("SELECT * FROM mensajes WHERE id_usuario = %s or id_usuario = %s", (contactos[0][1], session['id']))
         mensajes = cursor25.fetchall()
         conexion.commit()
 
@@ -311,6 +311,7 @@ def chats():
             elif contactos[0][0] in mensaje:
                 listL.append({'text': mensaje[3], 'contact_id': mensaje[2]})
 
+    print("listL:", listL)
     
     response = make_response(render_template('paginas/chats.html',chats = conversaciones, contactos = contactos, listR = listR, listL = listL))
     response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
